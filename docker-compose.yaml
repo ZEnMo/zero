@@ -37,6 +37,17 @@ services:
 
     ## Recompiles on source code changes.
     ## Do ensure that the two Gradle containers have independent Home directories and Project cache directories.
+    ztor-build-once:
+        image: gradle:8.3.0-jdk20
+        working_dir: /home/gradle/ztor
+        user: gradle
+        volumes:
+            - ./ztor:/home/gradle/ztor
+            - gradle-build-once-cache:/home/gradle/.gradle
+        command: gradle buildFatJar --no-daemon
+
+    ## Recompiles on source code changes.
+    ## Do ensure that the two Gradle containers have independent Home directories and Project cache directories.
     ztor-build:
         image: gradle:8.3.0-jdk20
         working_dir: /home/gradle/ztor
@@ -59,9 +70,12 @@ services:
             - gradle-run-cache:/home/gradle/.gradle
         restart: on-failure
         command: gradle --project-cache-dir=/tmp/gradle run
+        env_file:
+            - ./ztor/local.env
         environment:
             POSTGRES_URL: jdbc:postgresql://postgres:5432/postgres
             POSTGRES_USER: postgres
+            # TODO: security risk, make developer set it in local.env
             POSTGRES_PASSWORD: welkom123
 #        depends_on:
 #            - ztor-build
@@ -104,6 +118,7 @@ services:
 
 volumes:
     gradle-build-cache:
+    gradle-build-once-cache:
     gradle-run-cache:
     gradle-cmd-cache:
     postgres:

@@ -23,6 +23,8 @@ repositories {
 val exposed_version = "0.43.0"
 
 dependencies {
+    implementation(platform("com.azure:azure-sdk-bom:1.2.18"))
+    implementation("com.azure:azure-storage-blob:12.25.0")
     implementation("io.ktor:ktor-server-cors-jvm")
     implementation("io.ktor:ktor-server-call-logging-jvm")
     implementation("io.ktor:ktor-server-core-jvm")

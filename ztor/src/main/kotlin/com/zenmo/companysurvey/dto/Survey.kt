@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Survey(
     val created: Instant = Clock.System.now(),
+    val project: String,
     val companyName: String,
     val personName: String,
     val email: String = "",

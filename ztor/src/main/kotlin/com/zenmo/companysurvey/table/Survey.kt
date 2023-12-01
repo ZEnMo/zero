@@ -9,6 +9,8 @@ object CompanySurveyTable: Table("company_survey") {
     val id = uuid("id").autoGenerate()
     // Can be fetched at https://energiekeregio.nl/api/v1/zenmo?details=15989
     val energiekeRegioId = uinteger("energieke_regio_id").nullable()
+    // ZEnMo project name
+    val project = varchar("project", 50)
 
     val companyName = varchar("company_name", 50)
     val personName = varchar("person_name", 50)

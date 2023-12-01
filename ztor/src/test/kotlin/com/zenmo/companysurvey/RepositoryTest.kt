@@ -28,6 +28,7 @@ class RepositoryTest {
         val repo = SurveyRepository(db)
         val survey = Survey(
             companyName = "Zenmo",
+            project = "Project",
             personName = "John Doe",
             email = "john@example.com",
             gridConnections = emptyList(),
@@ -69,6 +70,7 @@ class RepositoryTest {
         val repo = SurveyRepository(db)
         val survey = Survey(
             companyName = "Zenmo",
+            project = "Project",
             personName = "John Doe",
             email = "john@example.com",
             transport = Transport(
@@ -162,6 +164,7 @@ class RepositoryTest {
                     ),
                     mainConsumptionProcess = "Main consumption process",
                     electrificationPlans = "Electrification plans",
+                    consumptionFlexibility = "Consumption flexibility",
                 )
             )
         )

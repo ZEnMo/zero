@@ -6,6 +6,7 @@ import com.zenmo.energieprestatieonline.RawPandTable
 import com.zenmo.companysurvey.table.CompanySurveyGridConnectionTable
 import com.zenmo.companysurvey.table.CompanySurveyTable
 import com.zenmo.dbutil.createEnumTypeSql
+import com.zenmo.errorMessageToJson
 import io.ktor.http.*
 import io.ktor.serialization.*
 import io.ktor.server.application.*
@@ -15,7 +16,6 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import java.sql.*
 import kotlinx.coroutines.*
-import kotlinx.serialization.SerializationException
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.*
@@ -49,14 +49,6 @@ fun Application.configureDatabases(): Database {
     }
 
     return db
-}
-
-fun errorMessageToJson(message: String?): Any {
-    return mapOf(
-        "error" to mapOf(
-            "message" to message
-        )
-    )
 }
 
 fun createSchema(db: Database) {

@@ -18,6 +18,7 @@ class SurveyRepository(
         transaction(db) {
             CompanySurveyTable.insert {
                 it[id] = surveyId
+                it[project] = survey.project
                 it[companyName] = survey.companyName
                 it[personName] = survey.personName
                 it[email] = survey.email
